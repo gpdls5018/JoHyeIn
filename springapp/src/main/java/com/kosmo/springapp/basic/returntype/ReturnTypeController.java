@@ -38,7 +38,7 @@ public class ReturnTypeController {
 		//방법1. ModelAndView 객체에 뷰 정보만 저장해서 반환
 		//데이타 저장-Model에 데이타 저장
 		model.addAllAttributes(map); //파라미터명이 속성명이 되서 리퀘스트 영역에 저장된다
-		model.addAttribute("message", map.get("returnType")); 
+		model.addAttribute("message", map.get("returnType"));
 		
 		return new ModelAndView("02_returntype/ReturnType");
 		 */
@@ -92,7 +92,7 @@ public class ReturnTypeController {
 						"username","KOSMO",
 						"password","1234",
 						"parameter",returnType));
-		//혜인이는 영훈이에게 커밋 연습 하라고 구박 당하는 중
+		
 		//스트림 닫기
 		out.close();
 	}////////////////
