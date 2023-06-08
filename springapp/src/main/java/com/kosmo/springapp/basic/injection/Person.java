@@ -2,7 +2,7 @@ package com.kosmo.springapp.basic.injection;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component //스프링 컨테이너에 빈을 등록해주는 어노테이션
 public class Person {
 	//속성들(필드)-멤버변수들
 	private String name;

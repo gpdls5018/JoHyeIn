@@ -47,7 +47,7 @@
 	<nav class="navbar navbar-expand-md bg-secondary navbar-dark text-nowrap py-1 fixed-top">
   
       <!--Brand / Logo 표시-->
-      <a class="navbar-brand" href="${pageContext.servletContext.contextPath }"><i class="fa-brands fa-font-awesome" style="font-size: 28px;"></i></a>
+      <a class="navbar-brand" href="<c:url value="/" />"><i class="fa-brands fa-font-awesome" style="font-size: 28px;"></i></a>
       <!-- Navbar Text -->
       <span class="navbar-text mr-2">
         여러분들을 위한 플랫폼

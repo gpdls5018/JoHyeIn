@@ -34,6 +34,8 @@ spring.mvc.view.suffix=.jsp
         	<h2>3. Controller Method <small><a href="<c:url value="/returntype.do"/> ">컨트롤러 메소드의 반환타입</a></small></h2>
         	
         	<h2>4. Dependency Injection <small><a href="<c:url value="/injection.do"/> ">의존성 주입</a></small></h2>
+        	
+        	<h2>5. Annotation <small><a href="<c:url value="/annotation.do"/> ">의존성 주입</a></small></h2>
         </fieldset>
         
     </div><!--container-->

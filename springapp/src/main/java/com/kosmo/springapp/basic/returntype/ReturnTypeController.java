@@ -38,7 +38,7 @@ public class ReturnTypeController {
 		//방법1. ModelAndView 객체에 뷰 정보만 저장해서 반환
 		//데이타 저장-Model에 데이타 저장
 		model.addAllAttributes(map); //파라미터명이 속성명이 되서 리퀘스트 영역에 저장된다
-		model.addAttribute("message", map.get("returnType"));
+		model.addAttribute("message", map.get("returnType")); 
 		
 		return new ModelAndView("02_returntype/ReturnType");
 		 */
@@ -76,7 +76,7 @@ public class ReturnTypeController {
 	//디스패처 서블릿에게 뷰 및 데이타 정보 반환하지 않으므로 뷰 리졸버가 동작하지 않는다
 	//컨드롤러에서 바로 브라우저로 데이타 전송 시
 	
-	@RequestMapping("ReturnType/Void.do")
+	@RequestMapping("/ReturnType/Void.do")
 	public void noreturn(@RequestParam String returnType, HttpServletResponse resp) throws IOException {
 		/*
 		 Ajax나 Rest API 구현 시 주로 사용(단, void 보다는 객체 반환을 주로 사용한다)
@@ -102,12 +102,12 @@ public class ReturnTypeController {
 	뷰리졸버가 동작하지 않는다
 	컨트롤러에서 바로 브라우저로 데이타 전송시
 	뷰 리졸버 대신 HttpMessageConverter가 작동한다
-	String반환시는  StringHttpMessageConverter가 작동해서  JSON으로 변환 처리
+	String반환시는  StringHttpMessageConverter가 작동해서 JSON으로 변환 처리
 	객체 반환시는 JSON으로 변환하는 라이브러리가 작동해서 JSON으로 변환 처리(단, 스프링부트는 JACKSON이 포함되어 있음)
 	예를들면 MappingJackson2HttpMessageConverter
 	 */
 	
-	@RequestMapping("ReturnType/Object.do")
+	@RequestMapping("/ReturnType/Object.do")
 	@ResponseBody //응답바디에서 바로 브라우저로 데이타 전송한다
 	//1.String 타입 반환 시 - StringHttpMessageConverter 가 처리
 	//public String object(@RequestParam String returnType) throws JsonProcessingException { //뷰 정보가 아니다

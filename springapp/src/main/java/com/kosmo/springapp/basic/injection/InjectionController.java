@@ -15,7 +15,7 @@ public class InjectionController {
 	//new로 객체화가 아닌 주입한다
 	//객체화는 스프링 철학에 어긋남(결합도가 높아지므로)
 	
-	@Autowired
+	@Autowired //데이타 소스 주입받기
 	public InjectionController(Person person) {
 		this.person = person;
 	}

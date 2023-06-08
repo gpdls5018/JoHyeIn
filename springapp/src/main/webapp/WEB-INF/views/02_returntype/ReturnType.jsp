@@ -31,6 +31,8 @@
     </div><!--container-->
 <jsp:include page="/WEB-INF/views/template/Footer.jsp"/>
 <script>
+// AJAX는 웹 페이지에서 비동기적으로 데이터를 주고받을 수 있는 기술로, 
+//페이지 전체를 다시 로드하지 않고도 서버와 데이터를 주고받을 수 있게 합니다.
 /*
 	$('#ajax').click(function(){
 		console.log('버튼 클릭!!');
@@ -52,22 +54,31 @@
 		var xhr = new XMLHttpRequest();
 		
 		// 요청 메서드 및 URL 설정
-		//xhr.open("post", "<c:url value="/ReturnType/Void.do"/>", true); //true : 비동기방식(asynk??)
+		//true : 비동기방식(asynk)
+		//순서대로 처리하지 않고 동시에 처리한다
+		//xhr.open("post", "<c:url value="/ReturnType/Void.do"/>", true); //post방식은 쿼리스트링으로 넘기지 않는다
 		xhr.open("get", "<c:url value="/ReturnType/Void.do?returnType=Void!"/>", true);
 		
-		// 요청 헤더 설정(get 방식일 때 필요 없음, post 방식일 때 반드시 Content-Type 설정)
+		/*
+		요청 헤더 설정(get 방식일 때 필요 없음, post 방식일 때 반드시 Content-Type 설정)
+		HTTP 프로토콜은 요청과 응답 메시지를 교환할 때, 메시지의 헤더와 바디로 구성되는데 
+		헤더에는 메시지에 대한 정보와 메타데이터가 포함되고, 바디에는 실제 데이터가 포함된다
+		POST 방식은 데이터를 요청의 바디에 담아 서버로 전송하기때문에 
+		POST 요청을 보낼 때는 바디에 어떤 형식의 데이터가 있는지 서버에 알려줘야하므로 아래 코드를 반드시 작성해야한다
+		데이터를 키-값 쌍으로 인코딩하고, 각각의 쌍은 "&"로 구분되며, 키와 값은 "="로 구분한다는 의미이다.
+		*/
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		
 		// 요청 파라미터 생성
 		var params = "returnType=Void!";
 		
 		// 요청 완료 후 처리할 콜백 함수 설정
-		xhr.onreadystatechange = function() {
+		xhr.onreadystatechange = function() { //상태 변화를 감지하고, 요청이 완료됐을 때 적절한 처리를 수행
 		  if (xhr.readyState === XMLHttpRequest.DONE) { //.DONE : 요청이 정상적으로 완료된 상태
-		    if (xhr.status === 200) {
+		    if (xhr.status === 200) {//HTTP 응답 상태 코드(status) 200은 요청이 성공적으로 처리되었음
 		    	
 		      // 요청이 성공적으로 완료되었을 때 처리할 로직
-		      console.log('서버로부터 받은 데이타',xhr.responseText);
+		      console.log('서버로부터 받은 데이타',xhr.responseText);//responseText:서버로부터 받은 응답 데이터
 		      console.log('서버로부터 받은 데이타의 타입',typeof xhr.responseText); //string
 		      
 		      var data = JSON.parse(xhr.responseText);
@@ -81,7 +92,7 @@
 		};
 		// 요청 전송(post 방식)
 		//xhr.send(params); //파라미터를 "POST" 방식으로 전송 시. GET 방식일 때는 주석처리
-		xhr.send(); //GET 방식 요청일 때.
+		xhr.send(); //GET 방식 요청일 때.(쿼리스트링으로 넘기므로 params 필요없음)
 	};
 	
 	function printConsole(){

@@ -31,10 +31,15 @@ public class IndexController {
 	
 	@RequestMapping("/injection.do")
 	public String injection() {
-		
 		//System.out.println("person(IndexController):"+person);
 		
 		//뷰정보 반환
 		return "03_injection/Injection";
+	}
+	
+	@RequestMapping("/annotation.do")
+	public String annotation() {
+		//뷰정보 반환
+		return "04_annotation/Annotation";
 	}
 }

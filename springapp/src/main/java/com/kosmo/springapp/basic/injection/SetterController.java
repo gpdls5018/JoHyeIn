@@ -16,7 +16,7 @@ public class SetterController {
 	//주입받은 값을 가공해서 속성에 넣을 때 사용
 	//단, 외부에서 변형 가능성이 있다(접근지정자 public 이므로)
 	//싱글톤!!!!!!!!!!!!
-	@Autowired
+	@Autowired //Setter 메소드에 @Autowired 어노테이션을 붙이는 방법입니다.
 	public void setPerson(Person person) {
 		System.out.println("SetterController 의 생성자");
 		this.person = person;
