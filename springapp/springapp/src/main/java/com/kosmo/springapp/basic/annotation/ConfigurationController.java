@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 [스프링 컨테이너에 빈 등록 방법]
 	방법1. @Controller, @Service, @Repository, @Component, @Configuration 가 붙은 클래스를 스캔 해서
 		  스프링 컨테이너에 어노테이션으로 빈 등록(컴포넌트 스캔)
-		  빈의 아이디는 카멜 케이스 형태의 클래스명이 된다		
+		  빈의 아이디는 카멜 케이스 형태의 클래스명이 된다	
 		  빈의 아이디를 직접 지정시에는 name 속성 추가.
 		  단, @Controller(value="빈 아이디"), @Component(value="빈 아이디")는 value속성 사용
 	
-	방법2.@Congiguration 어노테이션과 @Bean 어노테이션 사용해서 자바코드로
+	방법2. @Configuration 어노테이션과 @Bean 어노테이션 사용해서 자바코드로
 	     new 생성해서 빈 등록.
 	
 		@Configuration	
@@ -60,7 +60,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 	<beans:bean name="/HandlerMapping/BeanNameUrl.do" class="com.kosmo.springapp.basic.handlermapping.BeanNameUrlController"/>
 */
 
-@Controller()
+@Controller
 @Lazy
 public class ConfigurationController {
 	

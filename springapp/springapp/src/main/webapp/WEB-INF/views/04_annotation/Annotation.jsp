@@ -195,8 +195,8 @@
 			<h1 class="display-4">기타 어노테이션</h1>
 			<h5>@SessionAttribute(세션으로 인증을 위한 어노테이션)</h5>
 			<!-- HttpSession 혹은 @SessionAttribute(맵으로 파라미터 받기)으로 인증처리 시 -->
-			
-			<c:if test="${empty sessionScope.id }" var="isNotLogin">
+			${sessionScope.authenticationCommand }
+			<c:if test="${empty sessionScope.id && empty sessionScope.authenticationCommand }" var="isNotLogin">
 				<h6 class="font-weight-bolder">로그인 전</h6>
 				<form class="form-inline" action="<c:url value="/Annotation/SessionAttributeLogin.do"/>" method="GET">
 					<label>아이디</label> 
@@ -212,13 +212,13 @@
 			<c:if test="${! isNotLogin }">
 				<h6 class="font-weight-bolder">로그인 후</h6>
 				<!--@SessionAttribute 사용시 모델계열에 데이타 저장하면 두 영역에 동시에 저장됨  -->
-				<kbd>세션영역 : ${sessionScope.id}${sessionScope.loginCommand.id}</kbd>
+				<kbd>세션영역 : ${sessionScope.id}${sessionScope.authenticationCommand.id}</kbd>
 				<br />
 				
-				<kbd>리퀘스트 영역 : ${requestScope.id}${requestScope.loginCommand.id}</kbd>
+				<kbd>리퀘스트 영역 : ${requestScope.id}${requestScope.authenticationCommand.id}</kbd>
 				<br />
 				
-				<kbd>${sessionScope.id }${sessionScope.loginCommand.id} 님 즐감하세요</kbd>
+				<kbd>${sessionScope.id }${sessionScope.authenticationCommand.id} 님 즐감하세요</kbd>
 				
 				<a href="<c:url value="/Annotation/SessionAttributeLogout.do"/>">로그아웃</a>
 			</c:if>
@@ -230,7 +230,80 @@
 			<br />
 			
 			<kbd>@SessionAttribute 사용시 : ${isLoginMessage}</kbd>
+			
+			<h5>@ResponseBody(응답바디에 출력을 위한 어노테이션)</h5>
+			<a href="<c:url value="/Annotation/ResponseBody.do"/>">응답바디</a>
+			
+			<h5>@RequestBody(요청바디에 JSON형식의 컨텐츠를 읽기 위한 어노테이션)</h5>
+			<h6>서버로 JSON타입의 데이타 보내기</h6>
+			<a href="javascript:Json()">JSON데이타(데이타는 아래 폼에 입력하자)</a>
+			<h6 class="font-weight-bolder">서버로 폼데이타 보내기</h6>
+			<form class="form-inline" action="<c:url value="/Annotation/RequestBody.do"/>" method="POST">
+				<label>아이디</label> 
+				<input type="text" name="id" class="form-control mx-2" id="id"/> 
+				<label>비밀번호</label> 
+				<input type="password" name="pwd" class="form-control mx-2" id="pwd"/> 
+				<input type="submit" class="btn btn-danger mx-2" value="로그인" />
+			</form>
+			
+			<h5>@RequestHeader(요청헤더를 읽기 위한 어노테이션)</h5>
+			<a href="<c:url value="/Annotation/RequestHeader.do"/>">요청헤더</a><br/>
+			<kbd>${userAgent }</kbd>
         </fieldset>
     </div><!--container-->
 <jsp:include page="/WEB-INF/views/template/Footer.jsp"/>
+<script>
+	//***form태그의 전송방식은 key=value 쌍 형식(get,post), 주로 페이지 전송 시 사용*****
+	//서버에 key=value 형식이 아닌 json형식으로 데이타 보내기
+	function Json(){ //자스는 key=value, json 형식 둘 다 가능
+		var data = {id:$('#id').val(),
+					pwd:$('#pwd').val()};
+		//console.log(data);
+		//console.log(JSON.stringify(data)); //string
+		
+		//1.jQuery Ajax 사용
+		//https://api.jquery.com/jquery,ajax/
+		$.ajax({
+			url:'<c:url value="/Annotation/RequestBody.do" />',
+			method:'post',
+			data:JSON.stringify(data), //자스에서는 반드시 문자열로 바꿔서 전송해야함!!
+			contentType:'application/json',
+			dataType:'json'
+		}).done(data=>{
+			console.log('서버에서 받은 데이타:',data); //json
+			console.log('아이디:%s,비밀번호:%s',data.id,data.pwd);
+		}).fail(error=>{
+			console.log('에러발생',error);
+		});
+		
+		//2. fetch 자바스크립트 함수 사용 - 모듈을 임포트할 필요 없다. 자바스크립트에서 제공하는 함수
+		  //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+		  /*fetch('<c:url value="/Annotation/RequestBody.do"/>',{method:'POST',headers: {
+			    "Content-Type": "application/json",
+		  },body:JSON.stringify(data)})
+		  .then(function (response) {
+		    console.log(response);
+		    return response.json();		  
+		  })
+		  .then(function(data){
+			  console.log(data);
+			  console.log('아이디:%s,비번:%s',data.id,data.pwd);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });*/
+		  //3.axios 모듈 사용 - https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js모듈 임베딩 필요
+		//https://axios-http.com/kr/docs/intro
+		/*
+		 axios.post('<c:url value="/Annotation/RequestBody.do"/>', data)
+		  .then(function (response) {
+		    //console.log(response);
+		    console.log(response.data);
+		    console.log('아이디:%s,비번:%s',response.data.id,response.data.pwd);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });*/
+	}
+</script>
     

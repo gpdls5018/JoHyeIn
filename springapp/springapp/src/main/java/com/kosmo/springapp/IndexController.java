@@ -42,4 +42,22 @@ public class IndexController {
 		//뷰정보 반환
 		return "04_annotation/Annotation";
 	}
+	
+	@RequestMapping("/properties.do")
+	public String properties() {
+		//뷰정보 반환
+		return "05_properties/Properties";
+	}
+	
+	@RequestMapping("/database.do")
+	public String database() {
+		//뷰정보 반환
+		return "06_database/Database";
+	}
+	
+	@RequestMapping("/validation.do")
+	public String validation() {
+		//뷰정보 반환
+		return "07_validation/Validation";
+	}
 }

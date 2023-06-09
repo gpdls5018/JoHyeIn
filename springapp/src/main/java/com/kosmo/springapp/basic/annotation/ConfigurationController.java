@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		  빈의 아이디를 직접 지정시에는 name 속성 추가.
 		  단, @Controller(value="빈 아이디"), @Component(value="빈 아이디")는 value속성 사용
 	
-	방법2.@Congiguration 어노테이션과 @Bean 어노테이션 사용해서 자바코드로
+	방법2. @Configuration 어노테이션과 @Bean 어노테이션 사용해서 자바코드로
 	     new 생성해서 빈 등록.
 	
 		@Configuration	

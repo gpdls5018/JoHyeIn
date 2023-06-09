@@ -6,14 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller //요청하는 클래스??
+@Controller //요청한 클라이언트에 템플릿 뷰 페이지를 전송할 때
 public class AutowiredController {
 	
 	/*
 	 * 테스트 시나리오
 	 * 1. Type 기반
 	 * 	1-1.SpringBeanConfig파일에 Command객체 하나 등록(value속성/@Qualifier 생략)
-	 * 		@Autowired
+	 * 		@Autowired //데이타 소스 주입받기
 			private Command fCommand;
 			@Autowired
 			private Command sCommand;
@@ -35,6 +35,7 @@ public class AutowiredController {
 	    2.@Bean : id명 미부여 시 메소드명이 id(식별자)가 된다
 	    
 	 3. Qualifier기반
+	 	@Qualifier : 여러 개의 동일한 타입의 빈(Bean) 중에서 어떤 빈을 주입해야 하는지 명시적으로 지정하는데 사용
 	    3-1. SpringBeanConfig파일에서 id속성 제거 및  @Qualifier("식별자1") 추가
 	    3-2. 필드에 @Qualifier("식별자1")
 	 *
@@ -76,7 +77,7 @@ public class AutowiredController {
 	private Command secondCommand;
 	
 	//@Autowired //생성자가 1개 일 때는 생략가능
-	public void setSecondCommand(Command firstCommand, Command secondCommand) {
+	public AutowiredController(Command firstCommand, Command secondCommand) {
 		this.firstCommand = firstCommand;
 		this.secondCommand = secondCommand;
 	}

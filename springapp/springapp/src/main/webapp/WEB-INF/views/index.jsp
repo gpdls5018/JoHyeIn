@@ -35,7 +35,13 @@ spring.mvc.view.suffix=.jsp
         	
         	<h2>4. Dependency Injection <small><a href="<c:url value="/injection.do"/> ">의존성 주입</a></small></h2>
         	
-        	<h2>5. Annotation <small><a href="<c:url value="/annotation.do"/> ">의존성 주입</a></small></h2>
+        	<h2>5. Annotation <small><a href="<c:url value="/annotation.do"/> ">어노테이션</a></small></h2>
+        	
+        	<h2>6. Properties <small><a href="<c:url value="/properties.do"/> ">속성 파일(.properties 파일)</a></small></h2>
+        	
+        	<h2>7. Database <small><a href="<c:url value="/database.do"/> ">데이타베이스</a></small></h2>
+        	
+        	<h2>8. Validation <small><a href="<c:url value="/validation.do"/> ">유효성 검증</a></small></h2>
         </fieldset>
         
     </div><!--container-->
