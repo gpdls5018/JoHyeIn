@@ -90,14 +90,14 @@ public class RequestBodyController {
 	}
 	*/
 	/*
-	3.@ResponseBody로 받을 때
+	3.@RequestBody로 받을 때
 	form 태그: 415에러
 	자바스크립트의 JSON 형식의 데이타:
 			정상적으로 잘 받는다.
 	*/
 	/*
 	//커맨드 객체
-	public String responseBody(@RequestBody AuthenticationCommand auth) throws JsonProcessingException {
+	public String requestBody(@RequestBody AuthenticationCommand auth) throws JsonProcessingException {
 		
 		System.out.println("아이디:"+auth.getId());
 		ObjectMapper mapper = new ObjectMapper();
@@ -110,7 +110,7 @@ public class RequestBodyController {
 	}
 	*/
 	/*
-	public String responseBody(@RequestBody Map paramMap) throws JsonProcessingException {
+	public String requestBody(@RequestBody Map paramMap) throws JsonProcessingException {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		Map jmap = new HashMap();
@@ -125,14 +125,14 @@ public class RequestBodyController {
 	//***String으로 반환할 필요 없이 바로 커맨드 객체나 맵 컬렉션을 반환하면 된다
 	//jackson 라이브러리가 변환한다
 	
-	public Map responseBody(@RequestBody Map paramMap) {
+	public Map requestBody(@RequestBody Map paramMap) {
 		
 		return paramMap; //무조건 ""로 감싸자
 	}
 	*/
 	
 	
-	public AuthenticationCommand responseBody(@RequestBody AuthenticationCommand auth) {
+	public AuthenticationCommand requestBody(@RequestBody AuthenticationCommand auth) {
 		
 		return auth; //무조건 ""로 감싸자
 	}

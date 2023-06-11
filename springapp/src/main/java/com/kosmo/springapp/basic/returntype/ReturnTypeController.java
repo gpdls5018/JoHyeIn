@@ -102,7 +102,7 @@ public class ReturnTypeController {
 	뷰리졸버가 동작하지 않는다
 	컨트롤러에서 바로 브라우저로 데이타 전송시
 	뷰 리졸버 대신 HttpMessageConverter가 작동한다
-	String반환시는  StringHttpMessageConverter가 작동해서 JSON으로 변환 처리
+	String반환시는 StringHttpMessageConverter가 작동해서 JSON으로 변환 처리
 	객체 반환시는 JSON으로 변환하는 라이브러리가 작동해서 JSON으로 변환 처리(단, 스프링부트는 JACKSON이 포함되어 있음)
 	예를들면 MappingJackson2HttpMessageConverter
 	 */

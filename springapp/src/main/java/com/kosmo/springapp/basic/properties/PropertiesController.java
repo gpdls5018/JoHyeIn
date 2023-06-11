@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/Properties")
 public class PropertiesController {
 	
+	//디폴트 속성에서 읽기(application.properties)
 	@Value("${spring.mvc.static-path-pattern}")
 	private String staticPathPattern;
 	

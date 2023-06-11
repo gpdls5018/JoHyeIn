@@ -236,7 +236,7 @@
 			
 			<h5>@RequestBody(요청바디에 JSON형식의 컨텐츠를 읽기 위한 어노테이션)</h5>
 			<h6>서버로 JSON타입의 데이타 보내기</h6>
-			<a href="javascript:Json()">JSON데이타(데이타는 아래 폼에 입력하자)</a>
+			<a href="javascript:json()">JSON데이타(데이타는 아래 폼에 입력하자)</a>
 			<h6 class="font-weight-bolder">서버로 폼데이타 보내기</h6>
 			<form class="form-inline" action="<c:url value="/Annotation/RequestBody.do"/>" method="POST">
 				<label>아이디</label> 
@@ -255,7 +255,7 @@
 <script>
 	//***form태그의 전송방식은 key=value 쌍 형식(get,post), 주로 페이지 전송 시 사용*****
 	//서버에 key=value 형식이 아닌 json형식으로 데이타 보내기
-	function Json(){ //자스는 key=value, json 형식 둘 다 가능
+	function json(){ //자스는 key=value, json 형식 둘 다 가능
 		var data = {id:$('#id').val(),
 					pwd:$('#pwd').val()};
 		//console.log(data);
@@ -267,10 +267,11 @@
 			url:'<c:url value="/Annotation/RequestBody.do" />',
 			method:'post',
 			data:JSON.stringify(data), //자스에서는 반드시 문자열로 바꿔서 전송해야함!!
-			contentType:'application/json',
-			dataType:'json'
+			contentType:'application/json',//전송되는 데이타의 타입 설정
+			dataType:'json'//서버로부터 받을 데이타의 타입 설정
 		}).done(data=>{
-			console.log('서버에서 받은 데이타:',data); //json
+			console.log(typeof data);
+			console.log('서버에서 받은 데이타:',data); //json(Object)
 			console.log('아이디:%s,비밀번호:%s',data.id,data.pwd);
 		}).fail(error=>{
 			console.log('에러발생',error);

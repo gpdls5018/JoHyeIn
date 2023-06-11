@@ -20,7 +20,8 @@ public class ValidationController {
 		//Errors 객체의 hasErrors() 메소드는 true를 반환한다
 		
 		//체크박스는 무조건 여러개 선택하더라도 첫번째 것만 포워드된다
-		model.addAttribute("inter", form.getInter());
+		model.addAttribute("inter", form.getInter());  
+		//System.out.println(Arrays.toString(form.getInter()));
 		
 		if(errors.hasErrors()) { //유효성 통과 하지 못할 때
 			

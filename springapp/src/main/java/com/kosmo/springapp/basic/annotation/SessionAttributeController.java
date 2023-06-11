@@ -47,8 +47,8 @@ import org.springframework.web.bind.support.SessionStatus;
 	@SessionAttribute({"속성명1","속성명2",...}) 속성명은 폼의 파라미터 명과 반드시 일치 시켜라
 	
 	 [로그인] - 모델계열에 사용자가 입력한 아이디와 비번을 저장하면 세션영역에도 저장된다
-	 login(Model model,@RequestParam Map map){
-		회원 여부 판단후 회원이라면 model에 map저장
+	 login(Model model, @RequestParam Map map){
+		회원 여부 판단 후 회원이라면 model에 map저장
 	         	회원이 아니라면 model에 에러메시지 저장
 	 }
 	 
@@ -78,7 +78,7 @@ import org.springframework.web.bind.support.SessionStatus;
 		
 	 login(Model model, LoginCommand cmd, SessionStatus status){
 		회원이 아닌 경우를 판단해서
-	         세션영역에 저장된 커맨드를 객체를 status.setComplete()로 삭제해야한다
+	         세션영역에 저장된 커맨드 객체를 status.setComplete()로 삭제해야한다
 	         model에는 에러메시지 저장
 	 }
 	 
@@ -89,9 +89,9 @@ import org.springframework.web.bind.support.SessionStatus;
 	
 	 [로그인여부 판단]
 	 isLogin(@ModelAttribute("loginCommand") LoginCommad cmd, Model model){
-		//메소드 안으로 들어 온다는 애기는 세션영역에 "loginCommand" 존재한다는 말 고로 로그인이 되었다
-	    //세션영역에 "loginCommand" 없다면 무조건 500에러 - @ExceptionHandler 나 설정파일로 에러 처리
-	      model에 로그인되었다는 정보를 저장
+			메소드 안으로 들어 온다는 얘기는 세션영역에 "loginCommand" 존재한다는 말 고로 로그인이 되었다
+		    세션영역에 "loginCommand" 없다면 무조건 500에러 - @ExceptionHandler 나 설정파일로 에러 처리
+	      	model에 로그인되었다는 정보를 저장
 	}
 */
 
@@ -215,7 +215,7 @@ public class SessionAttributeController {
 			즉 회원이 아닌 경우는 세션영역에서 삭제해야 한다
 			단, 빈 설정 파일에 <annotation-driven/>태그 추가해야됨(스프링 레거시)
 			  
-			예]session.setAttribute("AuthenticationCommand", auth)식으로 저장됨
+			예]session.setAttribute("authenticationCommand", auth)식으로 저장됨
 		*/
 		if(!("KIM".equals(auth.getId()) && "1234".equals(auth.getPwd()))){ //회원이 아닐 때
 				

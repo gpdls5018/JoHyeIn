@@ -27,7 +27,7 @@ public class SpringBeanConfig {
 	@Bean //: 빈의 아이디 미 부여(이 때는 메소드명이 id가 된다)
 	@Qualifier("command1") //꼭 주입받는 대상의 필드명과 일치하지 않아도 된다
 	//@Bean("fCommand") //빈의 아이디 부여
-	public Command firstCommand() {//메소드명이 식별자가 된다       
+	public Command firstCommand() {//메소드명이 식별자가 된다
 		
 		return new Command("김길동", "KIM", "KIM1234");
 	}
